@@ -16,6 +16,8 @@ import static com.codeborne.selenide.Selenide.screenshot;
 import static org.hamcrest.CoreMatchers.containsString;
 
 public class TestOrderScooter {
+    private static final String MAIN_PAGE_URL = "https://qa-scooter.praktikum-services.ru";
+
 
     Customer firstCustomer = new Customer(
             "Елизавета",
@@ -52,7 +54,7 @@ public class TestOrderScooter {
     // From header Order button with Chrome driver
     @Test
     public void shouldSeePopupWithOrderInformationFromHeader() {
-        MainPage mainPage = open(MainPage.MAIN_PAGE_URL, MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.clickOnOrderButtonInHeader();
         OrderPage orderPage = page(OrderPage.class);
         orderPage.fillOrderFormStepOne(firstCustomer.firstName, firstCustomer.lastName, firstCustomer.orderAddress, firstCustomer.metroStation, firstCustomer.phoneNumber);
@@ -68,7 +70,7 @@ public class TestOrderScooter {
     @Test
     public void shouldSeePopupWithOrderInformationFromBottom() {
         Configuration.browser = "firefox";
-        MainPage mainPage = open(MainPage.MAIN_PAGE_URL, MainPage.class);
+        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainPage.clickOnOrderButtonInBottom();
         OrderPage orderPage = page(OrderPage.class);
         orderPage.fillOrderFormStepOne(secondCustomer.firstName, secondCustomer.lastName, secondCustomer.orderAddress, secondCustomer.metroStation, secondCustomer.phoneNumber);
